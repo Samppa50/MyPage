@@ -40,10 +40,12 @@ jobs:
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
+            exit 0
           elif [ -f "${{ github.workspace }}/web-page/package.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+            exit 0
           else
             echo "Unable to determine package manager"
             exit 1
@@ -54,6 +56,7 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+          cache-dependency-path: web-page/package-lock.json
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
@@ -81,6 +84,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
+        working-directory: web-page
 
   # Deployment job
   deploy:
