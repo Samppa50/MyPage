@@ -87,8 +87,4 @@ export default function Bingo() {
             </div>
         </div>
     );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> d74dc1b61ac4d935648d43e1f77238140b976ebe
