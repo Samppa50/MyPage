@@ -84,7 +84,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: web-page/out
-        working-directory: web-page
+
 
 
   # Deployment job
